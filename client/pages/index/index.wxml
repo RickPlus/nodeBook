@@ -9,10 +9,10 @@
     </image>
     <view class="list-item-content">
       <view>{{item.content}}</view>
-      <view class="list-item-content-date">{{item.date}}</view>
+      <view class="list-item-content-date">{{item.create_at}}</view>
     </view>
     <view class="list-item-rt">
-      <view>{{item.val}}</view>
+      <view>{{item.cost}}</view>
       <view class="list-item-rt-date">累计 -250</view>
     </view>
   </view>
