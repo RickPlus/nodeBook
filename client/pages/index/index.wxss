@@ -1,0 +1,32 @@
+.list-item{
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+  line-height: 20px;
+}
+.list-item-image{
+  width: 100rpx;
+  height: 100rpx;
+  /* margin: 20rpx; */
+  border-radius: 50%;
+}
+.list-item-rt, .list-item-content{
+  font-size: 28rpx;
+  color: rgba(16, 16, 16, 1);
+  /* padding-top: 10px; */
+}
+.list-item-rt-date, .list-item-content-date{
+  font-size: 24rpx;
+  color: rgba(16, 16, 16, 0.38);
+}
+.list-item-rt{
+  text-align: right;
+}
+.list-item-content{
+  flex: 1;
+}
+.list-item-content{
+  margin-left: 10px;
+}

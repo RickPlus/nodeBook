@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<view class="container pageList">
+  <view class="list-item">
+    <image
+        class="list-item-image"
+        src="../../images/icon_API.png"
+        background-size="cover"
+    >
+    </image>
+    <view class="list-item-content">
+      <view>想写什么就写什么</view>
+      <view class="list-item-content-date">今天 15:47</view>
+    </view>
+    <view class="list-item-rt">
+      <view>-50</view>
+      <view class="list-item-rt-date">累计 -250</view>
+    </view>
+  </view>
+</view>
