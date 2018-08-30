@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container pageList">
-  <view class="list-item">
+  <view class="list-item" wx:for="{{list}}" wx:key="{{index}}">
     <image
         class="list-item-image"
         src="../../images/icon_API.png"
@@ -8,11 +8,11 @@
     >
     </image>
     <view class="list-item-content">
-      <view>想写什么就写什么</view>
-      <view class="list-item-content-date">今天 15:47</view>
+      <view>{{item.content}}</view>
+      <view class="list-item-content-date">{{item.date}}</view>
     </view>
     <view class="list-item-rt">
-      <view>-50</view>
+      <view>{{item.val}}</view>
       <view class="list-item-rt-date">累计 -250</view>
     </view>
   </view>

@@ -24,12 +24,6 @@
         "text": "列表"
       },
       {
-        "pagePath": "pages/logs/logs",
-        "iconPath": "images/icon_component.png",
-        "selectedIconPath": "images/icon_component_HL.png",
-        "text": "日志"
-      },
-      {
         "pagePath": "pages/index/index",
         "iconPath": "images/icon_component.png",
         "selectedIconPath": "images/icon_component_HL.png",
