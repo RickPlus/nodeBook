@@ -5,11 +5,7 @@ var util = require('../../utils/util.js')
 
 Page({
   data: {
-      list: [],
-      refresh: true
-  },
-  get list () {
-    return []
+      list: []
   },
   onLoad () {
     this.getList()
