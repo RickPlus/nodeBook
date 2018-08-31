@@ -34,6 +34,7 @@ Page({
   },
 
   save () {
+    let self = this
     wx.request({
       url: config.service.listUrl,
       method: 'POST',
@@ -44,13 +45,13 @@ Page({
       success(result) {
         console.log(result)
         if (result.data.code === 1) {
-          let arr = this.data.listPage.data.list
+          let arr = self.data.listPage.data.list
           arr.unshift({
-            cost: this.data.cost,
-            content: this.data.content
+            cost: self.data.cost,
+            content: self.data.content
           })
           // 改变前一页的数据
-          this.data.listPage.setData({
+          self.data.listPage.setData({
             list: arr
           })
           wx.switchTab({
