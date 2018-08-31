@@ -1,4 +1,5 @@
 // pages/add/index.js
+var config = require('../../config')
 Page({
 
   /**
@@ -33,19 +34,34 @@ Page({
   },
 
   save () {
-    // ajax 
-    let arr = this.data.listPage.data.list
-    arr.unshift({
-      cost: this.data.cost,
-      content: this.data.content
-    })
-    // 改变前一页的数据
-    this.data.listPage.setData({
-      list: arr
-    })
-    wx.switchTab({
-      url: '/pages/index/index'
+    wx.request({
+      url: config.service.listUrl,
+      method: 'POST',
+      data: {
+        cost: this.data.cost,
+        content: this.data.content
+      },
+      success(result) {
+        console.log(result)
+        if (result.data.code === 1) {
+          let arr = this.data.listPage.data.list
+          arr.unshift({
+            cost: this.data.cost,
+            content: this.data.content
+          })
+          // 改变前一页的数据
+          this.data.listPage.setData({
+            list: arr
+          })
+          wx.switchTab({
+            url: '/pages/index/index'
+          })
+        }
+      },
+      fail(error) {
+        // util.showModel('请求失败', error);
+        console.log('request fail', error);
+      }
     })
   }
-
 })

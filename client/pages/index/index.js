@@ -13,7 +13,7 @@ Page({
   getList () {
     var self = this
     wx.request({
-      url: config.service.listGetUrl,
+      url: config.service.listUrl,
       success(result) {
         // util.showSuccess('请求成功完成')
         let {data} = result.data || []

@@ -23,8 +23,8 @@ var config = {
         // 上传图片接口
         uploadUrl: `${host}/weapp/upload`,
 
-        // 获取列表页
-        listGetUrl: `${host}/weapp/list`
+        // get获取列表页 post 添加
+        listUrl: `${host}/weapp/list`,
     }
 };
 
