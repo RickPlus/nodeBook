@@ -1,3 +1,10 @@
+.list-item-add{
+  width: 100rpx;
+  height: 100rpx;
+  position: fixed;
+  right: 20rpx;
+  bottom: 20rpx;
+}
 .list-item{
   width: 100%;
   display: flex;

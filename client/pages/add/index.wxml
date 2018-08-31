@@ -1,0 +1,12 @@
+<!--pages/add/index.wxml-->
+<view class="list-add-page">
+  <label>
+    <text>请输入金额</text>
+    <input type="digit" confirm-type="done" placeholder='0.00' class="list-add-input" bindinput="inputCost"></input>
+  </label>
+  <label>
+    <text>备注</text>
+    <input type="text" confirm-type="done" class="list-add-input" bindinput="inputContent"></input>
+  </label>
+  <button type="primary" bindtap="save">保存</button>
+</view>

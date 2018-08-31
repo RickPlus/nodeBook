@@ -5,7 +5,7 @@ var util = require('../../utils/util.js')
 
 Page({
   data: {
-      list: []
+    list: []
   },
   onLoad () {
     this.getList()
@@ -22,7 +22,6 @@ Page({
           o.created_at_format = util.formatDate(new Date(o.created_at))
           o.updated_at_format = util.formatDate(new Date(o.updated_at))
         })
-        console.log(data)
         self.setData({
           list: data
         })
@@ -31,6 +30,11 @@ Page({
         // util.showModel('请求失败', error);
         console.log('request fail', error);
       }
+    })
+  },
+  add () {
+    wx.navigateTo({
+      url: '/pages/add/index'
     })
   }
 })

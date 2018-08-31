@@ -1,5 +1,12 @@
 <!--index.wxml-->
 <view class="container pageList">
+  <image 
+    class="list-item-add"
+    src="../../images/plus.png"
+    background-size="cover"
+    bindtap="add"
+  >
+  </image>
   <view class="list-item" wx:for="{{list}}" wx:key="{{index}}">
     <image
         class="list-item-image"

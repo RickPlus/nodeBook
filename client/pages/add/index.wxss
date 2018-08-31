@@ -1,0 +1,12 @@
+/* pages/add/index.wxss */
+.list-add-page{
+  padding: 10rpx;
+  font-size: 24rpx;
+}
+.list-add-input{
+  font-size: 60rpx;
+  color: #000;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 20rpx 0;
+}
