@@ -2,13 +2,15 @@
   "pages":[
     "pages/index/index",
     "pages/add/index",
-    "pages/addCgi/addCgi"
+    "pages/manage/index",
+    "pages/book/index",
+    "pages/member/index"
   ],
   "window":{
     "backgroundColor":"#F6F6F6",
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "Wafer Quick Start",
+    "navigationBarTitleText": "记账",
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
@@ -24,10 +26,10 @@
         "text": "列表"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/manage/index",
         "iconPath": "images/icon_component.png",
         "selectedIconPath": "images/icon_component_HL.png",
-        "text": "添加"
+        "text": "管理"
       }
     ]
   }

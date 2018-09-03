@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="container pageManage">
+  <view class="manage-member-title">账本成员</view>
+  <view class="manage-member">
+    <view class="manage-item" bindtap="goMember">
+      <text class="manage-arrow"></text>
+      <image
+        class="member-image"
+        src="../../images/icon_API.png"
+        background-size="cover"
+      >
+      </image>
+    </view>
+  </view>
+  <view class="manage-item" bindtap="goBook">
+    <text class="manage-arrow"></text>
+    <text class="inline-right-text">{{currentBookName}}</text>
+    账本管理
+  </view>
+  <view class="manage-item">
+    <!-- <text class="manage-arrow"></text> -->
+    <text class="inline-right-text">0.0.1</text>
+    版本号
+  </view>
+</view>

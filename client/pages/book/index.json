@@ -2,8 +2,8 @@
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "添加账目",
-    "backgroundColor": "#eeeeee",
+    "navigationBarTitleText": "管理",
+    "backgroundColor": "#666",
     "backgroundTextStyle": "light",
     "enablePullDownRefresh": false
   }
