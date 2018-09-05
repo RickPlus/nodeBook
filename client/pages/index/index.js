@@ -15,6 +15,9 @@ Page({
     bookIndex: 0
   },
   onLoad () {
+    // Service.login().then((res) => {
+    //   console.log(res)
+    // })
     this.getList()
   },
   onShow () {
@@ -42,6 +45,7 @@ Page({
       bookIndex: e.detail.value
     })
     // todo 切换账本后 更新list数据
+    this.getList()
   },
   add () {
     wx.navigateTo({

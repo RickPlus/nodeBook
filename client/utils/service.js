@@ -1,3 +1,4 @@
+var qcloud = require('../vendor/wafer2-client-sdk/index')
 const config = require('../config.js')
 
 const Request = (url, data = {}, method = 'GET') => {
@@ -16,7 +17,43 @@ const Request = (url, data = {}, method = 'GET') => {
   })
 }
 
+const Login = () => {
+  const session = qcloud.Session.get()
+  if (session) {
+    return new Promise((resolve, reject) => {
+      qcloud.loginWithCode({
+        success: res => {
+          // this.setData({ userInfo: res, logged: true })
+          console.log('登录成功')
+          resolve && resolve(res)
+        },
+        fail: err => {
+          // console.error(err)
+          console.log('登录错误', err.message)
+          reject && reject(err)
+        }
+      })
+    })
+  } else {
+    return new Promise((resolve, reject) => {
+      qcloud.login({
+        success: res => {
+          console.log('登录成功')
+          resolve && resolve(res)
+        },
+        fail: err => {
+          console.log('登录错误', err.message)
+          reject && reject(err)
+        }
+      })
+    })
+  }
+}
+
 const Service = {
+  login: () => {
+    return Login()
+  },
   // 获取账单列表
   getList: (data = {}) => {
     // storage 存储 key：list
