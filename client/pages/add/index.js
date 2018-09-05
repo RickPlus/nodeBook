@@ -1,5 +1,5 @@
 // pages/add/index.js
-var config = require('../../config')
+const Service = require('../../utils/service.js')
 Page({
 
   /**
@@ -35,33 +35,21 @@ Page({
 
   save () {
     let self = this
-    wx.request({
-      url: config.service.listUrl,
-      method: 'POST',
-      data: {
-        cost: this.data.cost,
-        content: this.data.content
-      },
-      success(result) {
-        console.log(result)
-        if (result.data.code === 1) {
-          let arr = self.data.listPage.data.list
-          arr.unshift({
-            cost: self.data.cost,
-            content: self.data.content
-          })
-          // 改变前一页的数据
-          self.data.listPage.setData({
-            list: arr
-          })
-          wx.switchTab({
-            url: '/pages/index/index'
-          })
-        }
-      },
-      fail(error) {
-        // util.showModel('请求失败', error);
-        console.log('request fail', error);
+    Service.addList({
+      cost: this.data.cost,
+      content: this.data.content}
+    ).then((res) => {
+      let {code} = res
+      if (code === 1) {
+        let arr = self.data.listPage.data.list
+        arr.unshift({
+          cost: self.data.cost,
+          content: self.data.content
+        })
+        wx.setStorageSync('list', arr)
+        wx.switchTab({
+          url: '/pages/index/index'
+        })
       }
     })
   }

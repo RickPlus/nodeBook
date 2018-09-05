@@ -37,3 +37,6 @@
 .list-item-content{
   margin-left: 10px;
 }
+.book-picker{
+  padding: 15rpx 0;
+}

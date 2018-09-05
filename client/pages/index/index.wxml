@@ -1,5 +1,10 @@
 <!--index.wxml-->
 <view class="container pageList">
+  <picker value="{{bookIndex}}" range="{{bookList}}" bindchange="selectBook" class="book-picker">
+    <view class="picker">
+      {{bookList[bookIndex]}}
+    </view>
+  </picker>
   <image 
     class="list-item-add"
     src="../../images/plus.png"

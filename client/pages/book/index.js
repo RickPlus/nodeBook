@@ -5,8 +5,7 @@ var util = require('../../utils/util.js')
 
 Page({
   data: {
-    memberList: [],
-    currentBookName: '我的账本'
+    bookList: []
   },
   onLoad () {
     
