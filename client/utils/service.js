@@ -2,19 +2,29 @@ var qcloud = require('../vendor/wafer2-client-sdk/index')
 const config = require('../config.js')
 
 const Request = (url, data = {}, method = 'GET') => {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: url,
-      data: data,
-      method: method,
-      success(result) {
-        resolve && resolve(result.data)
-      },
-      fail(error) {
-        reject && reject(error)
-      }
+  const session = qcloud.Session.get()
+  // if (session) {
+  let openId = session ? session.userinfo.openId : ''
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: url,
+        data: data,
+        method: method,
+        header: {
+          openId: openId  // 后台接口直接拿openId  没有的话直接返回未登录
+        },
+        success(result) {
+          resolve && resolve(result.data)
+        },
+        fail(error) {
+          reject && reject(error)
+        }
+      })
     })
-  })
+  // } 
+  // else {
+  //   return Login()
+  // }
 }
 
 const Login = () => {
@@ -65,7 +75,7 @@ const Service = {
   },
   getBookList: (data = {}) => {
     // storage 存储 bookList
-    return Request(config.service.listU)
+    return Request(config.service.bookListUrl)
   }
 }
 

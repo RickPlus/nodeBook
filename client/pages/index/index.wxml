@@ -25,7 +25,7 @@
     </view>
     <view class="list-item-rt">
       <view>{{item.cost}}</view>
-      <view class="list-item-rt-date">累计 -250</view>
+      <!-- <view class="list-item-rt-date">累计 -250</view> -->
     </view>
   </view>
 </view>

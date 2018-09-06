@@ -1,6 +1,8 @@
 /**
  * ajax 服务路由集合
  */
+
+const openIdMiddleWare = require('../middlewares/auth.js')
 const router = require('koa-router')({
     prefix: '/weapp'
 })
@@ -32,9 +34,12 @@ router.get('/message', controllers.message.get)
 // POST 用来处理微信转发过来的客服消息
 router.post('/message', controllers.message.post)
 
-//获取列表
-router.get('/list', controllers.list.get)
+// 获取账单列表
+router.get('/list', openIdMiddleWare, controllers.list.get)
 // 添加单条
-router.post('/list', controllers.list.create)
+router.post('/list', openIdMiddleWare, controllers.list.create)
+// 获取账本列表
+router.get('/bookList', openIdMiddleWare, controllers.bookList.get)
+
 
 module.exports = router

@@ -15,15 +15,22 @@ Page({
     bookIndex: 0
   },
   onLoad () {
-    // Service.login().then((res) => {
-    //   console.log(res)
-    // })
-    this.getList()
+    Service.login().then((res) => {
+      // console.log(res)
+      this.getBookList()
+      // this.getList()
+    })
   },
   onShow () {
     let arr = wx.getStorageSync('list')
     arr.length && this.setData({
       list: arr
+    })
+  },
+  getBookList () {
+    Service.getBookList().then((res) => {
+      let { code, data } = res
+      wx.setStorageSync('bookList', data)
     })
   },
   getList () {
