@@ -15,12 +15,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-    // 获取页面
-    let pages = getCurrentPages()
-    // 设置listPage为前一页
-    this.setData({
-      listPage: pages[pages.length - 2]
-    })
+    // // 获取页面
+    // let pages = getCurrentPages()
+    // // 设置listPage为前一页
+    // this.setData({
+    //   listPage: pages[pages.length - 2]
+    // })
   },
   inputCost (e) {
     this.setData({
@@ -39,13 +39,10 @@ Page({
       cost: this.data.cost,
       content: this.data.content}
     ).then((res) => {
-      let {code} = res
-      if (code === 1) {
-        let arr = self.data.listPage.data.list
-        arr.unshift({
-          cost: self.data.cost,
-          content: self.data.content
-        })
+      let {code, data} = res
+      if (code === 0) {
+        let arr = wx.getStorageSync('list') || []
+        arr.unshift(data)
         wx.setStorageSync('list', arr)
         wx.switchTab({
           url: '/pages/index/index'

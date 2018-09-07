@@ -12,38 +12,68 @@ Page({
       '我的账本',
       '测试1'
     ],
-    bookIndex: 0
+    bookIndex: 0,
+    isLoaded: false
   },
   onLoad () {
-    Service.login().then((res) => {
-      // console.log(res)
-      this.getBookList()
-      // this.getList()
-    })
+    // this.setData({
+    //   isLoaded: true
+    // })
+    // Service.login().then((res) => {
+    //   // console.log(res)
+    //   this.getBookList()
+    //   // this.getList()
+    // })
   },
   onShow () {
-    let arr = wx.getStorageSync('list')
-    arr.length && this.setData({
-      list: arr
-    })
+    if (this.data.isLoaded) {
+      wx.getStorageSync('list') && this.setListData(wx.getStorageSync('list'))
+      wx.getStorageSync('bookList') && wx.getStorageSync('currentBookId') && this.setBookData(wx.getStorageSync('bookList'), wx.getStorageSync('currentBookId'))
+    } else {
+      this.setData({
+        isLoaded: true
+      })
+      Service.login().then((res) => {
+        // console.log(res)
+        this.getBookList()
+        // this.getList()
+      })
+    }
   },
   getBookList () {
     Service.getBookList().then((res) => {
       let { code, data } = res
-      wx.setStorageSync('bookList', data)
+      this.setBookData(data.list, data.defaultBookId)
+      wx.setStorageSync('currentUserId', data.currentUserId)
+      wx.setStorageSync('currentBookId', data.defaultBookId)
+      this.getList()
+      wx.setStorageSync('bookList', data.list)
+    })
+  },
+  setListData (list) {
+    list && list.length && list.map((o) => {
+      o.created_at_format = util.formatDate(new Date(o.created_at), 'yyyy-MM-dd hh:mm:ss')
+      o.updated_at_format = util.formatDate(new Date(o.updated_at), 'yyyy-MM-dd hh:mm:ss')
+    })
+    this.setData({
+      list: list
+    })
+  },
+  setBookData (list, defaultId) {
+    let arr = []
+    list.forEach((o) => {
+      arr.push(o.name)
+    })
+    this.setData({
+      bookList: arr,
+      bookIndex: list.findIndex(o => o.id === defaultId)
     })
   },
   getList () {
     var self = this
     Service.getList().then((res) => {
       let {code, data} = res
-      data && data.length && data.map((o) => {
-        o.created_at_format = util.formatDate(new Date(o.created_at))
-        o.updated_at_format = util.formatDate(new Date(o.updated_at))
-      })
-      self.setData({
-        list: data
-      })
+      this.setListData(data)
       wx.setStorageSync('list', data)
     })
   },

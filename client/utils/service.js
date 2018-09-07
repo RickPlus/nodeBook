@@ -5,22 +5,26 @@ const Request = (url, data = {}, method = 'GET') => {
   const session = qcloud.Session.get()
   // if (session) {
   let openId = session ? session.userinfo.openId : ''
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: url,
-        data: data,
-        method: method,
-        header: {
-          openId: openId  // 后台接口直接拿openId  没有的话直接返回未登录
-        },
-        success(result) {
-          resolve && resolve(result.data)
-        },
-        fail(error) {
-          reject && reject(error)
-        }
-      })
+  let userId = wx.getStorageSync('currentUserId') || ''
+  let bookId = wx.getStorageSync('currentBookId') || ''
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: url,
+      data: data,
+      method: method,
+      header: {
+        openId,  // 后台接口直接拿openId  没有的话直接返回未登录
+        userId,
+        bookId
+      },
+      success(result) {
+        resolve && resolve(result.data)
+      },
+      fail(error) {
+        reject && reject(error)
+      }
     })
+  })
   // } 
   // else {
   //   return Login()

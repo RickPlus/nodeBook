@@ -2,7 +2,14 @@ const { mysql } = require('../qcloud')
 async function get(ctx, next) {
   let openId = ctx.req.headers.openid
   // let oR = await mysql.select().table('book').where('book_id',1);
-  let [one, defaultBookId = '', list = []] = [await mysql('user').where('weixin_openid', openId).then(result => result[0])]
+  let [
+    one,
+    currentUserId = '',
+    defaultBookId = '', 
+    list = []
+  ] = [
+    await mysql('user').where('weixin_openid', openId).then(result => result[0])]
+  ctx.cookies.set('test','121212')
   /** 
   * 有账本
   * */
@@ -21,13 +28,15 @@ async function get(ctx, next) {
       }
     }
     defaultBookId = one['default_bookid']
-    book.length && book.forEach((o) => {
-      list.push({
-        book_id: o.id,
-        name: o.name,
-        create_userid: o.create_userid
-      })
-    })
+    currentUserId = uid
+    list = book
+    // book.length && book.forEach((o) => {
+    //   list.push({
+    //     book_id: o.id,
+    //     name: o.name,
+    //     create_userid: o.create_userid
+    //   })
+    // })
   } else {
     let defaultName = '默认账本'
     /** 
@@ -38,6 +47,7 @@ async function get(ctx, next) {
     let uid = await mysql('user').insert({
       weixin_openid: openId
     }).then(result => result[0])
+
     // 新增book
     let bid = await mysql('book').insert({
       name: defaultName,
@@ -52,6 +62,7 @@ async function get(ctx, next) {
     await mysql('user').where('id', uid).update('default_bookid', bid)
 
     defaultBookId = bid
+    currentUserId = uid
     list = [
       {
         book_id: bid,
@@ -60,8 +71,10 @@ async function get(ctx, next) {
       }
     ]
   }
+  
   ctx.state.data = {
     defaultBookId,
+    currentUserId,
     list
   }
   // ctx.state.code = 1
