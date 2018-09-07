@@ -78,9 +78,15 @@ Page({
     })
   },
   selectBook (e) {
-    this.setData({
-      bookIndex: e.detail.value
+    let index = e.detail.value
+    let bookList = wx.getStorageSync('bookList')
+    let item = bookList.find((o, i) => {
+      return i === index
     })
+    this.setData({
+      bookIndex: index
+    })
+    wx.setStorageSync('currentBookId', item.id)
     // todo 切换账本后 更新list数据
     this.getList()
   },
