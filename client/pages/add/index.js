@@ -34,7 +34,6 @@ Page({
   },
 
   save () {
-    let self = this
     Service.addList({
       cost: this.data.cost,
       content: this.data.content}

@@ -6,3 +6,6 @@
   box-sizing: border-box;
   font-size: 28rpx;
 } 
+button{
+  width: 100%;
+}

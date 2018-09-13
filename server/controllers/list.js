@@ -8,7 +8,6 @@ async function create(ctx, next) {
   let {content, cost} = ctx.request.body
   let userId = ctx.req.headers.userid
   let bookId = ctx.req.headers.bookid
-  console.log(content, cost, userId)
   // let oR = await mysql.table('record').insert();
   // ctx.state.code = 1
   // ctx.state.data = oR

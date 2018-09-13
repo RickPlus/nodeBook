@@ -79,7 +79,10 @@ const Service = {
   },
   getBookList: (data = {}) => {
     // storage 存储 bookList
-    return Request(config.service.bookListUrl)
+    return Request(config.service.bookUrl)
+  },
+  modifyBook: (id, data = {}) => {
+    return Request(`${config.service.bookUrl}/${id}`, data, 'PUT')
   }
 }
 

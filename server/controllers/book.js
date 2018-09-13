@@ -81,6 +81,14 @@ async function get(ctx, next) {
   // ctx.state.data = oR
 }
 
+async function put (ctx, next) {
+  let { name } = ctx.request.body
+  let { id } = ctx.params
+  ctx.state.data = await mysql('book').where('id', id).update('name', name)
+  
+}
+
 module.exports = {
-  get
+  get,
+  put
 }

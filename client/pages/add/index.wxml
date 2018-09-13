@@ -6,7 +6,7 @@
   </label>
   <label>
     <text>备注</text>
-    <input type="text" confirm-type="done" class="list-add-input" bindinput="inputContent"></input>
+    <input type="text" confirm-type="done" class="list-add-input" placeholder='填的什么' bindinput="inputContent"></input>
   </label>
   <button type="primary" bindtap="save">保存</button>
 </view>

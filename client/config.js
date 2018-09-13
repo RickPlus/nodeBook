@@ -28,7 +28,8 @@ var config = {
         // get获取列表页 post 添加
         listUrl: `${host}/weapp/list`,
 
-        bookListUrl: `${host}/weapp/bookList`
+        bookUrl: `${host}/weapp/book`
+
     }
 };
 
