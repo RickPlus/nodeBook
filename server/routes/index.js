@@ -40,7 +40,9 @@ router.get('/list', openIdMiddleWare, controllers.list.get)
 router.post('/list', openIdMiddleWare, controllers.list.create)
 // 获取账本列表
 router.get('/book', openIdMiddleWare, controllers.book.get)
-// 修改账本详情
+// 账本详情
 router.put('/book/:id', openIdMiddleWare, controllers.book.put)
+// 获取账本关联人物
+router.get('/book/:id/member', openIdMiddleWare, controllers.book.getMember)
 
 module.exports = router

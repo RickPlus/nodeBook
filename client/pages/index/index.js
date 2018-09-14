@@ -8,10 +8,7 @@ var app = getApp()
 Page({
   data: {
     list: [],
-    bookList: [
-      '我的账本',
-      '测试1'
-    ],
+    bookList: [],
     bookIndex: 0,
     isLoaded: false
   },

@@ -1,4 +1,5 @@
 <!--index.wxml-->
 <view class="container pageMember">
-  member
+  好友列表
+  <button open-type="share">分享</button>
 </view>

@@ -88,7 +88,25 @@ async function put (ctx, next) {
   
 }
 
+async function getMember (ctx, next) {
+  let { id } = ctx.params
+  let bookUserList = await mysql('bookuser').where('book_id', id)
+  let userList = []
+  if (bookUserList.length) {
+    for (let i = 0; i < bookUserList.length; i++) {
+      let item = await mysql('user').where('id', bookUserList[i]['user_id']).then(result => result[0])
+      let sessionInfo = await mysql('cSessionInfo').where('open_id', item['weixin_openid']).then(result => result[0])
+      item.user_info = JSON.parse(sessionInfo.user_info)
+      userList.push(item)
+    }
+  }
+  ctx.state.data = {
+    userList
+  }
+}
+
 module.exports = {
   get,
-  put
+  put,
+  getMember
 }

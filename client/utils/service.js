@@ -83,6 +83,9 @@ const Service = {
   },
   modifyBook: (id, data = {}) => {
     return Request(`${config.service.bookUrl}/${id}`, data, 'PUT')
+  },
+  getBookUsers: (id, data = {}) => {
+    return Request(`${config.service.bookUrl}/${id}/member`, data)
   }
 }
 

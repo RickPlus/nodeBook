@@ -5,4 +5,5 @@
     <input type="digit" confirm-type="done" class="list-add-input" bindinput="inputValue" value="{{bookName}}"></input>
   </label>
   <button type="primary" bindtap="save">保存</button>
+  
 </view>
