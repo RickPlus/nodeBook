@@ -1,11 +1,11 @@
 //index.js
-var qcloud = require('../../vendor/wafer2-client-sdk/index')
+const qcloud = require('../../vendor/wafer2-client-sdk/index')
 const Service = require('../../utils/service.js')
 
 Page({
   data: {
-    memberList: [],
-    currentBookName: '我的账本'
+    userList: [],
+    currentBookName: ''
   },
   onShareAppMessage: function (res) {
     const session = qcloud.Session.get()
@@ -34,7 +34,9 @@ Page({
     Service.getBookUsers(id).then((res) => {
       let { code, data } = res
       if (code === 0) {
-        console.log(res)
+        this.setData({
+          userList: data.userList
+        })
       }
     })
   }

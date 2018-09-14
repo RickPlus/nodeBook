@@ -1,5 +1,13 @@
 <!--index.wxml-->
 <view class="container pageMember">
-  好友列表
+  <view wx:for="{{userList}}" wx:key="{{index}}" class="list-item">
+    <image
+        class="member-image"
+        src="{{item.user_info.avatarUrl}}"
+        background-size="cover"
+      >
+      </image>
+      <text class="list-item-rt">{{item.user_info.nickName}}</text>
+  </view>
   <button open-type="share">分享</button>
 </view>

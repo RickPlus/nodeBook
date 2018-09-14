@@ -6,7 +6,7 @@
       <text class="manage-arrow"></text>
       <image
         class="member-image"
-        src="../../images/icon_API.png"
+        src="{{avatar}}"
         background-size="cover"
       >
       </image>
