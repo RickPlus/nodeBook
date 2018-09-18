@@ -12,15 +12,18 @@ Page({
     bookIndex: 0,
     isLoaded: false
   },
-  onLoad () {
-    // this.setData({
-    //   isLoaded: true
-    // })
-    // Service.login().then((res) => {
-    //   // console.log(res)
-    //   this.getBookList()
-    //   // this.getList()
-    // })
+  onLoad (query) {
+    Service.relateBook(query.from_bookid, {
+      pid: query.from_pid
+    }).then((res) => {
+      let { code, data } = res
+      if (code === 0) {
+        if (data && data.book) {
+          let list = wx.getStorageSync('bookList').push(data.book)
+          this.setBookData(data.list, wx.getStorageSync('currentUserId'))
+        }
+      }
+    })
   },
   onShow () {
     if (this.data.isLoaded) {
@@ -31,7 +34,6 @@ Page({
         isLoaded: true
       })
       Service.login().then((res) => {
-        // console.log(res)
         this.getBookList()
         // this.getList()
       })
@@ -75,7 +77,7 @@ Page({
     })
   },
   selectBook (e) {
-    let index = e.detail.value
+    let index = +e.detail.value
     let bookList = wx.getStorageSync('bookList')
     let item = bookList.find((o, i) => {
       return i === index

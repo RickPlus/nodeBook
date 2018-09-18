@@ -44,5 +44,7 @@ router.get('/book', openIdMiddleWare, controllers.book.get)
 router.put('/book/:id', openIdMiddleWare, controllers.book.put)
 // 获取账本关联人物
 router.get('/book/:id/member', openIdMiddleWare, controllers.book.getMember)
+// 账本关联人物
+router.post('/book/:id/member', openIdMiddleWare, controllers.book.setMember)
 
 module.exports = router

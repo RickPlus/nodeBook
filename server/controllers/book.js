@@ -105,8 +105,34 @@ async function getMember (ctx, next) {
   }
 }
 
+async function setMember(ctx, next) {
+  let { id } = ctx.params
+  let { pid } = ctx.request.body
+  let openId = ctx.req.headers.openid
+  let userId = ctx.req.headers.userid
+
+  let isExist = await mysql('bookuser').where({ 'book_id': id, 'user_id': userId }).then(result => result[0])
+  if (!isExist){
+    let inviter = await mysql('user').where('weixin_openid', pid).then(result => result[0])
+    let bookuser = await mysql('bookuser').where({ 'book_id': id, user_id: inviter['id'] }).then(result => result[0])
+    if (bookuser) {
+      await mysql('bookuser').insert({
+        book_id: id,
+        user_id: userId
+      })
+      let book = await mysql('book').where('id', id).then(result => result[0])
+      ctx.state.data = {
+        book
+      }
+    } else {
+      ctx.state.code = -1
+    }
+  }
+}
+
 module.exports = {
   get,
   put,
-  getMember
+  getMember,
+  setMember
 }

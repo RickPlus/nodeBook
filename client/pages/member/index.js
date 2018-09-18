@@ -7,19 +7,35 @@ Page({
     userList: [],
     currentBookName: ''
   },
+  onLoad: function () {
+    wx.showShareMenu({
+      withShareTicket: true,
+      success: function (res) {
+        // 分享成功
+        console.log('shareMenu share success')
+        console.log(res)
+      },
+      fail: function (res) {
+        // 分享失败
+        console.log(res)
+      }
+    })
+  },
   onShareAppMessage: function (res) {
     const session = qcloud.Session.get()
     let userInfo = session.userinfo
+    let bookId = wx.getStorageSync('currentBookId')
     if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target)
     }
 
-    return {
+    let obj = {
       title: `${userInfo.nickName}邀请您加入家庭记账`,
-      path: `pages/index/index?from_id=${userInfo.openId}`
+      path: `/pages/index/index?from_pid=${userInfo.openId}&from_bookid=${bookId}`
     }
-    
+    console.log(obj)
+    return obj
   },
   onShow () {
     let bookList = wx.getStorageSync('bookList')

@@ -86,6 +86,9 @@ const Service = {
   },
   getBookUsers: (id, data = {}) => {
     return Request(`${config.service.bookUrl}/${id}/member`, data)
+  },
+  relateBook: (id, data={}) => {
+    return Request(`${config.service.bookUrl}/${id}/member`, data, 'POST')
   }
 }
 
