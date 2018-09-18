@@ -13,17 +13,19 @@ Page({
     isLoaded: false
   },
   onLoad (query) {
-    Service.relateBook(query.from_bookid, {
-      pid: query.from_pid
-    }).then((res) => {
-      let { code, data } = res
-      if (code === 0) {
-        if (data && data.book) {
-          let list = wx.getStorageSync('bookList').push(data.book)
-          this.setBookData(data.list, wx.getStorageSync('currentUserId'))
+    if (query && query.from_bookid && query.from_pid) {
+      Service.relateBook(query.from_bookid, {
+        pid: query.from_pid
+      }).then((res) => {
+        let { code, data } = res
+        if (code === 0) {
+          if (data && data.book) {
+            let list = wx.getStorageSync('bookList').push(data.book)
+            this.setBookData(data.list, wx.getStorageSync('currentUserId'))
+          }
         }
-      }
-    })
+      })
+    }
   },
   onShow () {
     if (this.data.isLoaded) {
