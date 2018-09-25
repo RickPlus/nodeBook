@@ -1,6 +1,8 @@
 const { mysql } = require('../qcloud')
 async function get(ctx, next) {
-  let oR = await mysql.select().table('record').where('book_id', 1).orderBy('created_at', 'desc');
+  let userId = ctx.req.headers.userid
+  let bookId = ctx.req.headers.bookid
+  let oR = await mysql.select().table('record').where('book_id', bookId).orderBy('created_at', 'desc');
   ctx.state.data = oR
 }
 
