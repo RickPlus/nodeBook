@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/list/index",
     "pages/add/index",
     "pages/manage/index",
     "pages/book/index",
@@ -20,7 +21,7 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/list/index",
         "iconPath": "images/icon_API.png",
         "selectedIconPath": "images/icon_API_HL.png",
         "text": "列表"

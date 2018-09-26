@@ -1,0 +1,10 @@
+.list-item-add{
+  width: 100rpx;
+  height: 100rpx;
+  position: fixed;
+  right: 20rpx;
+  bottom: 20rpx;
+}
+.book-picker{
+  padding: 15rpx 0;
+}

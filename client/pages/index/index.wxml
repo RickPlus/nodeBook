@@ -1,31 +1,5 @@
 <!--index.wxml-->
-<view class="container pageList">
-  <picker value="{{bookIndex}}" range="{{bookList}}" bindchange="selectBook" class="book-picker">
-    <view class="picker">
-      {{bookList[bookIndex]}}
-    </view>
-  </picker>
-  <image 
-    class="list-item-add"
-    src="../../images/plus.png"
-    background-size="cover"
-    bindtap="add"
-  >
-  </image>
-  <view class="list-item" wx:for="{{list}}" wx:key="{{index}}">
-    <image
-        class="list-item-image"
-        src="../../images/icon_API.png"
-        background-size="cover"
-    >
-    </image>
-    <view class="list-item-content">
-      <view>{{item.content}}</view>
-      <view class="list-item-content-date">{{item.created_at_format}}</view>
-    </view>
-    <view class="list-item-rt">
-      <view>{{item.cost}}</view>
-      <!-- <view class="list-item-rt-date">累计 -250</view> -->
-    </view>
-  </view>
+<view class="container pageIndex">
+  <text>欢迎来到家庭记账</text>
+  <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" type="primary">授权访问</button>
 </view>
