@@ -25,22 +25,21 @@ Page({
     const session = qcloud.Session.get()
     let userInfo = session.userinfo
     let bookId = wx.getStorageSync('currentBookId')
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
+    // if (res.from === 'button') {
+    //   // 来自页面内转发按钮
+    //   console.log(res.target)
+    // }
 
     let obj = {
       title: `${userInfo.nickName}邀请您加入家庭记账`,
       path: `/pages/index/index?from_pid=${userInfo.openId}&from_bookid=${bookId}`
     }
-    console.log(obj)
     return obj
   },
   onShow () {
     let bookList = wx.getStorageSync('bookList')
     let currentBookId = wx.getStorageSync('currentBookId')
-    bookList && currentBookId && this.setData({
+    bookList && bookList.length && currentBookId && this.setData({
       currentBookName: bookList.find(o => o.id === currentBookId).name
     })
     this.getUserList()

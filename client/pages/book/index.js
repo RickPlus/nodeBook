@@ -7,10 +7,13 @@ Page({
   },
   onShow () {
     let currentBookId = wx.getStorageSync('currentBookId')
-    let item = wx.getStorageSync('bookList').find(o => o.id === currentBookId)
-    this.setData({
-      bookName: item.name
-    })
+    let list = wx.getStorageSync('bookList')
+    if (list && list.length && currentBookId) {
+      let item = wx.getStorageSync('bookList').find(o => o.id === currentBookId)
+      this.setData({
+        bookName: item.name
+      })
+    }
   },
   inputValue(e) {
     this.setData({
