@@ -9,7 +9,6 @@ async function get(ctx, next) {
     list = []
   ] = [
     await mysql('user').where('weixin_openid', openId).then(result => result[0])]
-  ctx.cookies.set('test','121212')
   /** 
   * 有账本
   * */

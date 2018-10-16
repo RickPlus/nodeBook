@@ -32,36 +32,48 @@ const Request = (url, data = {}, method = 'GET') => {
 }
 
 const Login = () => {
-  const session = qcloud.Session.get()
-  if (session) {
-    return new Promise((resolve, reject) => {
-      qcloud.loginWithCode({
-        success: res => {
-          // this.setData({ userInfo: res, logged: true })
-          console.log('登录成功')
-          resolve && resolve(res)
-        },
-        fail: err => {
-          // console.error(err)
-          console.log('登录错误', err.message)
-          reject && reject(err)
-        }
-      })
+  return new Promise((resolve, reject) => {
+    qcloud.login({
+      success: res => {
+        console.log('登录成功')
+        resolve && resolve(res)
+      },
+      fail: err => {
+        console.log('登录错误', err.message)
+        reject && reject(err)
+      }
     })
-  } else {
-    return new Promise((resolve, reject) => {
-      qcloud.login({
-        success: res => {
-          console.log('登录成功')
-          resolve && resolve(res)
-        },
-        fail: err => {
-          console.log('登录错误', err.message)
-          reject && reject(err)
-        }
-      })
-    })
-  }
+  })
+  // const session = qcloud.Session.get()  
+  // if (session) {
+  //   return new Promise((resolve, reject) => {
+  //     qcloud.loginWithCode({
+  //       success: res => {
+  //         // this.setData({ userInfo: res, logged: true })
+  //         console.log('登录成功')
+  //         resolve && resolve(res)
+  //       },
+  //       fail: err => {
+  //         // console.error(err)
+  //         console.log('登录错误', err.message)
+  //         reject && reject(err)
+  //       }
+  //     })
+  //   })
+  // } else {
+  //   return new Promise((resolve, reject) => {
+  //     qcloud.login({
+  //       success: res => {
+  //         console.log('登录成功')
+  //         resolve && resolve(res)
+  //       },
+  //       fail: err => {
+  //         console.log('登录错误', err.message)
+  //         reject && reject(err)
+  //       }
+  //     })
+  //   })
+  // }
 }
 
 const Service = {

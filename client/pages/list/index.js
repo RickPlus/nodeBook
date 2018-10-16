@@ -56,13 +56,15 @@ Page({
   },
   setBookData (list, defaultId) {
     let arr = []
-    list.forEach((o) => {
-      arr.push(o.name)
-    })
-    this.setData({
-      bookList: arr,
-      bookIndex: list.findIndex(o => o.id === defaultId)
-    })
+    if (list && list.length) {
+      list.forEach((o) => {
+        arr.push(o.name)
+      })
+      this.setData({
+        bookList: arr,
+        bookIndex: list.findIndex(o => (o.book_id || o.id) === defaultId)
+      })
+    }
   },
   getList () {
     var self = this

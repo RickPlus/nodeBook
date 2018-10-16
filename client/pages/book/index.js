@@ -3,13 +3,13 @@ const Service = require('../../utils/service.js')
 
 Page({
   data: {
-    bookName: '123'
+    bookName: ''
   },
   onShow () {
     let currentBookId = wx.getStorageSync('currentBookId')
     let list = wx.getStorageSync('bookList')
     if (list && list.length && currentBookId) {
-      let item = wx.getStorageSync('bookList').find(o => o.id === currentBookId)
+      let item = wx.getStorageSync('bookList').find(o => (o.book_id || o.id) === currentBookId)
       this.setData({
         bookName: item.name
       })

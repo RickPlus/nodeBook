@@ -13,7 +13,7 @@ Page({
     let bookList = wx.getStorageSync('bookList')
     let currentBookId = wx.getStorageSync('currentBookId')
     if (bookList && bookList.length && currentBookId) {
-      let item = bookList.find(o => o.id === currentBookId)
+      let item = bookList.find(o => (o.id|| o.book_id) === currentBookId)
       this.setData({
         currentBookName: item.name
       })
